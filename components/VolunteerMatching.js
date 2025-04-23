@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './VolunteerMatching.css'; // Make sure your CSS file contains corresponding styles
+import './VolunteerMatching.css';
 
 const VolunteerMatching = () => {
     const [volunteers, setVolunteers] = useState([]);
