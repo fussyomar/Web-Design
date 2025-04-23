@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './VolunteerMatching.css'; // Import the CSS file
+import './VolunteerMatching.css'; // Make sure your CSS file contains corresponding styles
 
 const VolunteerMatching = () => {
     const [volunteers, setVolunteers] = useState([]);
@@ -18,9 +18,8 @@ const VolunteerMatching = () => {
         const volunteer = volunteers.find(v => v.email === email);
         setSelectedVolunteer(volunteer);
 
-        // Match events based on skills
         if (volunteer) {
-            const matched = events.filter(event => 
+            const matched = events.filter(event =>
                 event.requiredSkills.some(skill => volunteer.skills.includes(skill))
             );
             setMatchedEvents(matched);
@@ -37,31 +36,33 @@ const VolunteerMatching = () => {
     };
 
     return (
-        <div className="volunteer-matching-container">
-            <h2>Volunteer Matching</h2>
+        <div className="container">
+            <h2 className="title">Volunteer Matching</h2>
 
-            <div className="volunteer-dropdown">
-                <label>Select a Volunteer:</label>
-                <select onChange={(e) => handleVolunteerSelect(e.target.value)}>
-                    <option value="">Select a Volunteer</option>
+            <div className="dropdown">
+                <label className="label">Select a Volunteer:</label>
+                <select className="select" onChange={(e) => handleVolunteerSelect(e.target.value)}>
+                    <option value="">-- Choose a Volunteer --</option>
                     {volunteers.map((vol) => (
-                        <option key={vol.email} value={vol.email}>{vol.fullName}</option>
+                        <option key={vol.email} value={vol.email}>
+                            {vol.fullName}
+                        </option>
                     ))}
                 </select>
             </div>
 
             {selectedVolunteer && (
-                <div className="volunteer-card">
-                    <h3>Volunteer: {selectedVolunteer.fullName}</h3>
-                    <p>Skills: {selectedVolunteer.skills.join(", ")}</p>
+                <div className="card">
+                    <h3>{selectedVolunteer.fullName}</h3>
+                    <p><strong>Skills:</strong> {selectedVolunteer.skills.join(", ")}</p>
 
-                    <div className="matching-events">
-                        <h3>Matching Events:</h3>
-                        <select onChange={(e) => handleMatchVolunteer(e.target.value)}>
-                            <option value="">Select an Event</option>
+                    <div className="dropdown">
+                        <label className="label">Matching Events:</label>
+                        <select className="select" onChange={(e) => handleMatchVolunteer(e.target.value)}>
+                            <option value="">-- Choose an Event --</option>
                             {matchedEvents.map((event) => (
                                 <option key={event.eventName} value={event.eventName}>
-                                    {event.eventName} - Required Skills: {event.requiredSkills.join(", ")}
+                                    {event.eventName} - Skills: {event.requiredSkills.join(", ")}
                                 </option>
                             ))}
                         </select>
@@ -73,4 +74,5 @@ const VolunteerMatching = () => {
 };
 
 export default VolunteerMatching;
+
 
