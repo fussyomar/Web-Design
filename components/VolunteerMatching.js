@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./VolunteerMatching.css";
 
-const MatchVolunteers = () => {
+const VolunteerMatching = () => {
   const [people, setPeople] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [currentPerson, setCurrentPerson] = useState(null);
@@ -78,6 +78,6 @@ const MatchVolunteers = () => {
   );
 };
 
-export default MatchVolunteers;
+export default VolunteerMatching;
 
 
